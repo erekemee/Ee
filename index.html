@@ -1,0 +1,499 @@
+<DOCTYPE html>
+<html>
+	<head>
+		<title>Me</title>
+		<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+		<style>
+@lightBg: #faffdd;
+@darkBg: #212a2c;
+
+body{
+position:absolute;
+  background-color: #black;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Helvetica Neue';
+}
+
+.text{
+postion:absolute;
+  color: yellow;
+  font-size: 32px;
+  font-weight: 500;
+  text-shadow: 0px 5px rgba(20,30,40,0.2);
+  letter-spacing: 0.15em;
+  transition: all .6s ease-out;
+}
+
+.container{
+postion:absolute;
+  background-color: #faffdd;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  // there is a glitch in chrome with 
+  // borders when animated, the overflow 
+  // hidden doesnt work on them, so you 
+  // have to use z-index: 0
+  border-radius: 1px;
+  z-index: 0;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 20px -5px rgba(0,5,10,.5);
+  .content{
+    z-index: 10;
+	border-radius:50px;
+  }
+  .animation-container{
+    z-index: 0;
+  }
+  .animated-bg{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    //transition: all .4s ease-in;
+
+  }
+  .top{
+    background-color: #00ba84;
+    top: ~"calc(-200px)";
+    left: ~"calc(50% - 100px)";
+  }
+  .left{
+    background-color: #65cc9b;
+    left: -200px;
+    z-index: 1;
+  }
+  .right{
+    background-color: #8dfb95;
+    z-index: 2;
+    left: 100%;
+  }
+  .bottom{
+    z-index: 3;
+    background-color: #32c87f;
+    top: 100%;
+  }
+  
+  &:hover{
+    .text{
+      color: #fff;
+      text-shadow: 2px 2px rgba(3,10,30,0.4);
+    }
+    .animated-bg{
+      transform: scale(10)
+    }
+    .top{
+      transition: all .3s ease-in-out
+    }
+    .left{
+      transition: all .3s .2s ease-in-out
+    }
+    .right{
+      transition: all .35s .4s ease-in-out
+
+    }
+    .bottom{
+      transition: all .4s 0.65s ease-in-out
+    }
+    
+  }
+}
+
+.me{
+position:absolute;
+  text-align: center;
+  color: lighten(@darkBg, 15%);
+  margin: 30px 0 10px;
+  a{
+  position:absolute;
+    display: block;
+    margin: 4px;
+    text-decoration: none;
+    text-shadow: 0 1px rgba(0,0,0,0.5);
+    color: @color1;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    transition: all 0.2s cubic-bezier(0.56, 0.03, 0.51, 2.28);
+    &:hover{
+      color: @color2;
+      transform: scale(1.1);
+    }
+  }
+}
+@layer demo {
+  article {
+    display: grid;
+    gap: 2ch;
+    grid-row: span 4; 
+    grid-template-rows: subgrid;
+    margin-inline: 5vmin;
+    margin-block: 7.5vmin;
+  }
+}
+
+@layer demo.support {
+  :root {
+    --text-1: oklch(20% none none);
+    --text-2: oklch(30% none none);
+    --text-3: oklch(40% none none);
+    
+    @media (prefers-color-scheme: dark) {
+      --text-1: oklch(95% none none);
+      --text-2: oklch(85% none none);
+      --text-3: oklch(70% none none);
+    }
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  html {
+    block-size: 100%;
+    color-scheme: dark light;
+  }
+
+  body {
+    min-block-size: 100%;
+    font-family: system-ui, sans-serif;
+
+    display: grid;
+    place-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(30ch, 1fr));
+    padding: 5vmin;
+  }
+  
+  header {
+    display: grid;
+    color: var(--text-1);
+  }
+  
+  hr {
+    height: 2px;
+    width: 10ch;
+    border: none;
+    background: LinkText;
+    background: linear-gradient(to bottom right in oklab, oklch(70% 0.5 340), oklch(90% 0.5 200)) fixed;
+  }
+  
+  p {
+    max-inline-size: 40ch;
+    text-wrap: balance;
+    line-height: 1.5;
+    color: var(--text-2);
+  }
+  
+  h2 {
+    text-wrap: balance;
+  }
+  
+  footer {
+    color: var(--text-3);
+  }
+}
+.e{
+	background-color:white;
+	margin:25px;
+	padding:25px;
+	border-radius:35px;
+	border:solid 7.9px;
+	width:542px;
+	text-align:left;
+}
+/*
+This demo was very old and overly complex
+I have updated it with a cleaner, more modern technique
+It still uses mix-blend-modes, so the basic idea hasn't changed
+
+Original
+https://codepen.io/giana/pen/MWxONWm
+*/
+
+/* Create pseudo elements for both elements */
+.text-effect-wrapper,
+.text {
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+}
+
+.text-effect-wrapper {
+  /* Can be anything light-colored */
+  --spotlight-color: white;
+
+  overflow: hidden;
+  position: relative;
+
+  /* Shimmer animation */
+  &::before {
+    animation: shimmer 5s infinite linear;
+    background: radial-gradient(circle, var(--spotlight-color), transparent 25%)
+        0 0 / 25% 25%,
+      radial-gradient(circle, var(--spotlight-color), black 25%) 50% 50% / 12.5%
+        12.5%;
+    inset-block-start: -100%;
+    inset-inline-start: -100%;
+    mix-blend-mode: color-dodge;
+    z-index: 3;
+  }
+
+  /* Extra filter to boost colors and contrast */
+  &::after {
+    backdrop-filter: blur(1px) brightness(90%) contrast(150%);
+    z-index: 4;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translate3d(50%, 50%, 0);
+  }
+}
+
+.text {
+  /* Mask colors */
+  /* Should be black and white */
+  --background-color: black;
+  --text-color: white;
+
+  /* Text color */
+  /* Can be anything */
+  --color-1: red;
+  --color-2: blue;
+
+  /* Fuzzy white outline text */
+  color: transparent;
+  text-shadow: 0 0 0.02em var(--background-color), 0 0 0.02em var(--text-color),
+    0 0 0.02em var(--text-color), 0 0 0.02em var(--text-color);
+
+  /* Improve contrast of outline */
+  &::before {
+    backdrop-filter: blur(0.013em) brightness(400%);
+    z-index: 1;
+  }
+
+  /* Add text color */
+  &::after {
+    background: linear-gradient(45deg, var(--color-1), var(--color-2));
+    mix-blend-mode: multiply;
+    z-index: 2;
+  }
+}
+
+/* Alternative styling */
+body:has(#option-toggle:checked) {
+  & .text-effect-wrapper {
+    --spotlight-color: orange;
+
+    &::after {
+      backdrop-filter: brightness(90%) contrast(150%);
+    }
+  }
+
+  & .text {
+    --angle: 5deg;
+    --color-1: hsl(163, 100%, 51%);
+    --color-2: hsl(295, 88%, 32%);
+    --color-3: hsl(59, 100%, 50%);
+
+    text-shadow: 0 0 0.03em var(--background-color),
+      0 0 0.03em var(--text-color);
+
+    &::before {
+      backdrop-filter: brightness(150%) contrast(200%);
+    }
+
+    &::after {
+      background: linear-gradient(
+        var(--angle),
+        var(--color-1),
+        var(--color-2),
+        var(--color-3)
+      );
+      mix-blend-mode: color-dodge;
+    }
+  }
+}
+
+/* === Pen styling, ignore */
+
+h1 {
+  --font-size: clamp(6.25rem, 3.25rem + 15vw, 13.75rem);
+
+  font: 700 var(--font-size) / 1 "Lato", sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+
+  &:empty,
+  &:focus {
+    border: 2px dotted white;
+    min-width: 1ch;
+    outline-offset: 5px;
+  }
+}
+
+body {
+  background: grey;
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+label {
+  background-color: hsl(240deg, 20%, 50%);
+  border-radius: 5px;
+  color: #fff;
+  padding: 0.5em 1em;
+
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 1000;
+
+  &:has(:checked) {
+    background-color: hsl(350deg, 60%, 50%);
+  }
+}
+
+input {
+  position: absolute;
+  opacity: 0;
+}
+.r{
+	background-color:white;
+	margin:25px;
+	padding:25px;
+	border-radius:35px;
+	border:solid 7.9px;
+	text-align:left;
+	box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+.q{
+	text-align:center;
+}
+.y{
+	align-items:center;
+	text-align:center;
+	
+}
+.u{
+				border-radius:35px;
+				border:solid 7.9px;
+				height:500px;
+}
+.animate__animated animate__zoomIn img{
+		border-radius:100%;
+		
+}
+		</style>
+	</head>
+	<body>
+	<div class="r">
+<div class="container">
+  <div class="animation-container">
+    <div class="animated-bg top"></div>
+    <div class="animated-bg right"></div>
+    <div class="animated-bg left"></div>
+    <div class="animated-bg bottom"></div>
+  </div>
+
+  <div class="content">
+    <div class="text">Welcome!</div>
+  </div>
+</div>
+</div>
+<div class="e">
+
+<article>
+  <header>
+    <h2 class="animate__animated animate__fadeInUpBig">My Life</h2>
+  </header>
+  <hr>
+  <p class="animate__animated animate__fadeInDownBig">My name is Erhkembayar. I'm 11 years old.I love coding and teenage coder.There's 6 people in my family.I want to be rich 🤑 </p>
+  <footer>
+    <big>$$$</big>
+  </footer>
+
+
+
+  <header>
+    <h2 class="animate__animated animate__fadeInUpBig">Status</h2>
+  </header>
+  <hr>
+  <p class="animate__animated animate__fadeInDownBig">CSS : 37%</p>
+  <p class="animate__animated animate__fadeInDownBig">HTML : 33%</p>
+  <p class="animate__animated animate__fadeInDownBig">JS : 30%</p>
+  <p class="animate__animated animate__fadeInDownBig">Sick : false</p>
+  <p class="animate__animated animate__fadeInDownBig">Love eating : true</p>
+  
+  <footer>
+    <big>???</big>
+  </footer>
+
+
+
+  <header>
+    <h2 class="animate__animated animate__fadeInUpBig">Favorites (food and drinks)</h2>
+  </header>
+  <hr>
+  <p class="animate__animated animate__fadeInDownBig">Chips , Milk , Water in 3AM , Fanta , Pepperoni pizza , Lasagna , Soup , Mint choclate ice cream , Hamburgers , KFC chicken (note:im not black) ,	Poutine , Kruidnoten , Chicken nugget , Ginger snap , Waffles , Pancakes , Popcorn , French Fries , Strawberry , Soup , BEANS , Grilled Cheese , Burrito , Taco , Pudding , Rice , Momo , Fettuccine , Luinguini , Shrimp , Bacon , Ham , Balls💀 , Cookie , Croissant , Baguette , Peanut butter and jelly sandwich.
+
+ </p>
+  <footer>
+    <big>!!!</big>
+  </footer>
+</article>
+</div>
+<!--
+This demo was very old and overly complex
+I have updated it with a cleaner, more modern technique
+It still uses mix-blend-modes, so the basic idea hasn't changed
+
+Original:
+https://codepen.io/giana/pen/MWxONWm
+-->
+<div class="text-effect-wrapper">
+  <!-- The contenteditable attribute means you can type your text right on the page -->
+  <h1 class="text" contenteditable>/Description about me/</h1>
+</div>
+<label for="option-toggle">
+  <input type="checkbox" id="option-toggle"> Version toggle
+</label>
+<div class="r">
+ <h2 class="animate__animated animate__backInRight">Birth date & Place where i live</h2> <p class="animate__animated animate__backInRight">I was born in 2013 years 7 month 10 day. I live in Mongolia Ulaanbaatar city white street  <p>
+</div>
+<div class="r">
+
+ <h2 class="animate__animated animate__zoomIn">Projects</h2> <h3><h3>Snake:</h3><a class="" href="https://erekemee.github.io/Snake/"><img src="th (1).jpg"></a></h3>
+									<h3>Weather:</h3><h3><a class="animate__animated animate__zoomIn" href="https://erekemee.github.io/weather/"><img src="th.jpg"></a></h3>
+									<h3>To Do:</h3><a class="animate__animated animate__zoomIn" href="https://erekemee.github.io/To--Do/"><img src="e.jpg"></a></h3>
+									<h3>Color Changer:</h3><h3><a class="animate__animated animate__zoomIn" href="https://erekemee.github.io/background-color"><img src="q.jpg"></a></h3>
+									<h3>Rock Paper Sciscors:</h3><h3><a class="animate__animated animate__zoomIn" href="https://erekemee.github.io/Games"><img src="w.jpg"></a></h3>
+									<h3>Counter:</h3><h3><a class="animate__animated animate__backInRight" href="https://erekemee.github.io/Counter"><img src="r.jpg"></a></h3>
+									<h3>Draumatic story:</h3><h3><a class="animate__animated animate__backInRight" href="https://erekemee.github.io/Game"><img src="t.jpg"></a></h3>
+									<h3>Counter 2:</h3><h3><a class="animate__animated animate__backInRight" href="https://erekemee.github.io/Time"><img src="y.jpg"></a></h3>
+
+</div>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+		<script src='app.js'></script>
+	</body>
+<html>
